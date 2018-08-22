@@ -30,4 +30,23 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  home:
+    welcome: 'Welcome to Our Poke Go Community'
+    sign_up: 'Sign Up'
+    login: 'Login'
+    logout: 'Logout'
+  sign_up:
+    title: 'Please fill the required fields'
+    name: 'Trainer Name'
+    level: 'Trainer Level'
+    phone: 'Phone Number'
+    password: 'Password'
+    password_confirmation: 'Password Confirmation'
+    welcome: "Welcome to the Community Trainer %{trainer}"
+  login:
+    provide_credentials: 'Please provide your trainer name and your password'
+    submit: 'Login'
+    successful_login: "Welcome Back Trainer %{trainer}"
+    invalid_credentials: 'Incorrect Trainer Name or Password, please try again.'
+  logout:
+    message: 'Your session was closed correctly.'

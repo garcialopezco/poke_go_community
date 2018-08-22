@@ -1,0 +1,8 @@
+<h1><%= t('home.welcome') %></h1>
+
+<% if current_user %>
+  <%= link_to t('home.logout'), logout_path, method: :delete %>
+<% else %>
+  <%= link_to t('home.login'), login_path %>
+  <%= link_to t('home.sign_up'), sign_up_path %>
+<% end %>

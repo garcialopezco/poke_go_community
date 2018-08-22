@@ -1,0 +1,13 @@
+<%= form_tag login_path, method: :post do %>
+  <h1><%= t('login.provide_credentials') %></h1>
+
+  <%= label_tag :name, t('sign_up.name') %><br/>
+  <%= text_field_tag :name %>
+
+  <%= label_tag :password, t('sign_up.password') %><br/>
+  <%= password_field_tag :password %>
+
+  <%= button_tag :submit, type: :submit do %>
+    <%= t('login.submit') %>
+  <% end %>
+<% end %>

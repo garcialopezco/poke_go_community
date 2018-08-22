@@ -1,0 +1,20 @@
+<%= form_for @user, method: :post do |f| %>
+  <h1><%= t('sign_up.title') %></h1>
+
+  <%= f.label :name, t('sign_up.name') %><br/>
+  <%= f.text_field :name %>
+
+  <%= f.label :level, t('sign_up.level') %><br/>
+  <%= f.text_field :level %>
+
+  <%= f.label :trainer_phone_number, t('sign_up.phone') %><br/>
+  <%= f.text_field :trainer_phone_number %>
+
+  <%= f.label :password, t('sign_up.password') %><br/>
+  <%= f.password_field :password %>
+
+  <%= f.label :password_confirmation, t('sign_up.password_confirmation') %><br/>
+  <%= f.password_field :password_confirmation %>
+
+  <%= f.submit "Sign Up" %>
+<% end %>
