@@ -43,6 +43,7 @@ en:
     password: 'Password'
     password_confirmation: 'Password Confirmation'
     welcome: "Welcome to the Community Trainer %{trainer}"
+    submit: 'Sign Up'
   login:
     provide_credentials: 'Please provide your trainer name and your password'
     submit: 'Login'
