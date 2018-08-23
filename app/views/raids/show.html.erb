@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Gym:</strong>
+  <%= @raid.gym %>
+</p>
+
+<p>
+  <strong>Boss:</strong>
+  <%= @raid.boss %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @raid.time %>
+</p>
+
+<p>
+  <strong>Remaining time:</strong>
+  <%= @raid.remaining_time %>
+</p>
+
+<%= link_to 'Edit', edit_raid_path(@raid) %> |
+<%= link_to 'Back', raids_path %>

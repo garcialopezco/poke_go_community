@@ -49,5 +49,15 @@ en:
     submit: 'Login'
     successful_login: "Welcome Back Trainer %{trainer}"
     invalid_credentials: 'Incorrect Trainer Name or Password, please try again.'
+    unregistered_user: "If you don't have an account, you can create one here:"
   logout:
     message: 'Your session was closed correctly.'
+  raids:
+    create:
+      success: 'Raid was successfully created.'
+    update:
+      success: 'Raid was successfully updated.'
+    delete:
+      success: 'Raid was successfully destroyed.'
+    back: 'Back'
+    errors_count: "%{errors} prohibited this raid from being saved:"

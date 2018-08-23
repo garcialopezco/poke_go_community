@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_22_130329) do
+ActiveRecord::Schema.define(version: 2018_08_22_170544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "gyms", force: :cascade do |t|
+    t.string "name"
+    t.string "lat"
+    t.string "long"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "raids", force: :cascade do |t|
+    t.bigint "gym_id"
+    t.string "boss"
+    t.datetime "time"
+    t.integer "remaining_time", default: 44
+    t.boolean "expired", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gym_id"], name: "index_raids_on_gym_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -25,4 +45,5 @@ ActiveRecord::Schema.define(version: 2018_08_22_130329) do
     t.index ["name"], name: "index_users_on_name"
   end
 
+  add_foreign_key "raids", "gyms"
 end

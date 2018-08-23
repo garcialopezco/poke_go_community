@@ -1,0 +1,42 @@
+<%= form_with(model: raid, local: true) do |form| %>
+  <% if raid.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t 'raids.errors_count', errors: pluralize(raid.errors.count, "error") %> </h2>
+
+      <ul>
+      <% raid.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :gym_id, "Gym" %>
+    <%= form.collection_select(:gym_id, Gym.all, :id, :name) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :boss %>
+    <%= form.select :boss, ["Raichu", "Machamp"] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hour %>
+    <%= form.select :hour, 6.upto(20).to_a %>
+  </div>
+
+  <div class="field">
+    <%= form.label :minute %>
+    <%= form.select :minute, 0.upto(59).to_a %>
+  </div>
+
+  <div class="field">
+    <%= form.label :remaining_time, "Remaining Time" %>
+    <%= form.number_field :remaining_time %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
