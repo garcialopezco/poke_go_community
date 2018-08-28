@@ -5,6 +5,7 @@ feature "Signing up" do
     visit "/sign_up"
     fill_in "Trainer Name", with: "Chaaartz"
     fill_in "Level", with: "38"
+    select  "Instinct", from: "user_team"
     fill_in "Phone Number", with: "95112334567"
     fill_in "Password", with: "MyP@ssword1"
     fill_in "Password Confirmation", with: "MyP@ssword1"

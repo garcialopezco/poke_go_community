@@ -21,7 +21,7 @@ RSpec.describe RaidsController, type: :controller do
   let(:valid_attributes) {
     {
       gym_id: gym.id,
-      boss: "Machamp",
+      boss: "Tyranitar",
       hour: 11,
       minute: 35
     }
@@ -30,6 +30,7 @@ RSpec.describe RaidsController, type: :controller do
   let(:valid_model_attributes) {
     {
       gym_id: gym.id,
+      level: 3,
       boss: "Machamp",
       time: Time.current
     }
@@ -87,7 +88,17 @@ RSpec.describe RaidsController, type: :controller do
 
       it "redirects to the created raid" do
         post :create, params: { raid: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(Raid.last)
+        expect(response).to redirect_to(raids_path)
+      end
+
+      it "sets the attendees counter to 1" do
+        post :create, params: { raid: valid_attributes }, session: valid_session
+        expect(Raid.last.confirmed).to eq 1
+      end
+
+      it "sets the level automatically" do
+        post :create, params: { raid: valid_attributes }, session: valid_session
+        expect(Raid.last.level).to eq 4
       end
     end
 
@@ -99,7 +110,7 @@ RSpec.describe RaidsController, type: :controller do
     end
   end
 
-  describe "PUT #update" do
+  xdescribe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
         {

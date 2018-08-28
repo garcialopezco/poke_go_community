@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>PokeGoCommunity</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'bootstrap' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <% if current_user %>
+      <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 boder-bottom shadow-sm">
+        <h5 class="my-0 mr-md-auto font-weight-normal">Poke Go Community</h5>
+        
+        <nav class="my-2 my-md-0 mr-md-3">  
+            <%= link_to t('home.raids'), raids_path, class: "p-2" %>
+        </nav>
+        <%= link_to t('home.logout'), logout_path, method: :delete, class: "py-2" %>
+      </div>
+    <% end %>
+
     <% if notice %>
       <%= notice %>
     <% end %>

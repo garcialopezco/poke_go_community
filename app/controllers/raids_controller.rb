@@ -26,10 +26,12 @@ class RaidsController < ApplicationController
   # POST /raids.json
   def create
     @raid = Raid.new(raid_params)
+    @raid.set_level
 
     respond_to do |format|
       if @raid.save
-        format.html { redirect_to @raid, notice: t('.success') }
+        @raid.add_attendee(current_user)
+        format.html { redirect_to raids_url, notice: t('.success') }
         format.json { render :show, status: :created, location: @raid }
       else
         format.html { render :new }

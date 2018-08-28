@@ -1,0 +1,30 @@
+%my-form {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+
+  .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+
+    &:focus {
+      z-index: 2;
+    }
+  }
+
+  input {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+
+
+  }
+
+  input.last-input {
+    margin-bottom: 20px;
+  }
+}

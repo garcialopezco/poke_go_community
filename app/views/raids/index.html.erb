@@ -1,33 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Raids</h1>
+<div class="raids-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1 class="display-4"><%= t('raids.list_title') %></h1>
+  <p class="lead"><%= t('raids.lead') %></p>
+  <%= link_to 'New Raid', new_raid_path, class: "btn btn-lg btn-outline-primary" %>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Gym</th>
-      <th>Boss</th>
-      <th>Time</th>
-      <th>Remaining time</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="container">
+  <div class="row">
     <% @raids.each do |raid| %>
-      <tr>
-        <td><%= raid.gym %></td>
-        <td><%= raid.boss %></td>
-        <td><%= raid.time %></td>
-        <td><%= raid.remaining_time %></td>
-        <td><%= link_to 'Show', raid %></td>
-        <td><%= link_to 'Edit', edit_raid_path(raid) %></td>
-        <td><%= link_to 'Destroy', raid, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <%= render "raid", raid: raid %>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
+
 
 <br>
 
-<%= link_to 'New Raid', new_raid_path %>

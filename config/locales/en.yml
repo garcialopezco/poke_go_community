@@ -36,16 +36,17 @@ en:
     login: 'Login'
     logout: 'Logout'
   sign_up:
-    title: 'Please fill the required fields'
+    title: 'Required Fields'
     name: 'Trainer Name'
     level: 'Trainer Level'
+    team: 'Team'
     phone: 'Phone Number'
     password: 'Password'
     password_confirmation: 'Password Confirmation'
     welcome: "Welcome to the Community Trainer %{trainer}"
     submit: 'Sign Up'
   login:
-    provide_credentials: 'Please provide your trainer name and your password'
+    provide_credentials: 'Please sign in'
     submit: 'Login'
     successful_login: "Welcome Back Trainer %{trainer}"
     invalid_credentials: 'Incorrect Trainer Name or Password, please try again.'
@@ -61,3 +62,7 @@ en:
       success: 'Raid was successfully destroyed.'
     back: 'Back'
     errors_count: "%{errors} prohibited this raid from being saved:"
+    list_title: 'Active Raids'
+    lead: 'Here is the list of active Raids Nearby'
+    ends_at: 'Ending time' 
+    confirmed: 'Confirmed'

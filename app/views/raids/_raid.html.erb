@@ -1,0 +1,23 @@
+<div class="col-md-4 text-center">
+  <div class="card mb-4 shadow-sm" id=<%= "raid-#{raid.id}" %>>
+    <div class="card-header">
+      <h4 class="my-0 font-weight-normal">Level 3</h4>
+    </div>
+
+    <div class="card-body">
+      <h1 class="card-title">
+        <%= raid.scheduled_time %><br />
+        <small class="text-muted"><%= raid.boss %></small>
+      </h1>
+
+      <ul class="raid-details list-unstyled mt-3 mb-4">
+        <li><span class="font-weight-bold">Gym:</span> <%= raid.gym.name %></li>
+        <li><span class="font-weight-bold"><%= t('raids.ends_at') %>:</span> <%= raid.ends_at %></li>
+        <li><span class="font-weight-bold">Coords:</span> <%= "#{raid.gym.lat}, #{raid.gym.long}" %></li>
+        <li><span class="font-weight-bold"><%= t('raids.confirmed') %>:</span> <%= raid.confirmed %></li>
+      </ul>
+
+      <%= link_to "Confirm", raid_attendances_path(raid), data: { method: :post, remote: :true }, class: "btn btn-lg btn-block btn-outline-primary" unless raid.already_registered?(current_user) %>
+    </div>
+  </div>
+</div>

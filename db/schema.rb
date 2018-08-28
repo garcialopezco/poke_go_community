@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_22_170544) do
+ActiveRecord::Schema.define(version: 2018_08_27_224525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,15 @@ ActiveRecord::Schema.define(version: 2018_08_22_170544) do
     t.boolean "expired", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "level"
     t.index ["gym_id"], name: "index_raids_on_gym_id"
+  end
+
+  create_table "raids_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "raid_id", null: false
+    t.index ["raid_id", "user_id"], name: "index_raids_users_on_raid_id_and_user_id"
+    t.index ["user_id", "raid_id"], name: "index_raids_users_on_user_id_and_raid_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,6 +50,7 @@ ActiveRecord::Schema.define(version: 2018_08_22_170544) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "team"
     t.index ["name"], name: "index_users_on_name"
   end
 

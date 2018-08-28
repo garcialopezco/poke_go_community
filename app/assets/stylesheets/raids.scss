@@ -1,3 +1,12 @@
 // Place all the styles related to the Raids controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'forms';
+
+.raids-header {
+  max-width: 700px;
+}
+
+.raid-form {
+  @extend %my-form;
+}

@@ -1,24 +1,29 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple web app just to play around a little with Rails 5.2.
 
-Things you may want to cover:
+## About Poke Go Community
 
-* Ruby version
+It is intended to help Pokemon Go trainers organize Raids so they can see what Raids are active and how many trainers have confirmed their attendance.
 
-* System dependencies
+### Current Features
 
-* Configuration
+* Trainer signup
+* List of Raids
+* Ability to create new Raids that are visible to all registered trainers
 
-* Database creation
+### Considerations
 
-* Database initialization
+You may need to add manually all the gyms for your city.
 
-* How to run the test suite
+### Some Screenshots
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+### Future plans
 
-* ...
+* Improve Raid listing using your phone's location
+* Add a Telegram bot in order to receive notifications
+
+### Contact
+
+If you are interested in some helpful feature for your community you can send me an email to chaaartz@gmail.com

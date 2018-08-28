@@ -1,15 +1,15 @@
-<%= form_tag login_path, method: :post do %>
-  <h1><%= t('login.provide_credentials') %></h1>
+<%= form_with url: login_path, method: :post, class: "form-signin" do %>
+  <h1 class="h3 mb-3 font-weight-normal"><%= t('login.provide_credentials') %></h1>
 
-  <%= label_tag :name, t('sign_up.name') %><br/>
-  <%= text_field_tag :name %>
+  <%= label_tag :name, t('sign_up.name'), class: "sr-only" %>
+  <%= text_field_tag :name, "", placeholder: t('sign_up.name'), class: "form-control"  %>
 
-  <%= label_tag :password, t('sign_up.password') %><br/>
-  <%= password_field_tag :password %>
+  <%= label_tag :password, t('sign_up.password'), class: "sr-only" %>
+  <%= password_field_tag :password, "", placeholder: t('sign_up.password'), class: "form-control last-input" %>
 
-  <%= button_tag :submit, type: :submit do %>
+  <%= button_tag :submit, type: :submit, class: "btn btn-lg btn-primary btn-block" do %>
     <%= t('login.submit') %>
   <% end %>
+
+  <p class="mt-5 mb-3 text-muted"><%= t('login.unregistered_user') %> <%= link_to t('home.sign_up'), sign_up_path %></p>
 <% end %>
-<br />
-<h2><%= t('login.unregistered_user') %> <%= link_to t('home_sign_up'), sign_up_path %></h2>
