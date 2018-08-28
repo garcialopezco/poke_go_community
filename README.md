@@ -18,6 +18,7 @@ You may need to add manually all the gyms for your city.
 
 ### Some Screenshots
 
+Coming soon!
 
 ### Future plans
 
