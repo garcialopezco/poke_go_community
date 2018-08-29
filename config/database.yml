@@ -28,4 +28,5 @@ production:
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   database: poke_go_community_production
+  username: poke_go_community
   password: <%= ENV['POKE_GO_COMMUNITY_DATABASE_PASSWORD'] %>
