@@ -63,7 +63,6 @@ jobs:
           keys:
             - yarn-cache-{{ checksum "yarn.lock" }}
             - yarn-cache
-            - yarn-cache
       - run: yarn install
       # Store yarn / webpacker cache
       - save_cache:
