@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/garcialopezco/poke_go_community.svg?style=svg)](https://circleci.com/gh/garcialopezco/poke_go_community)
+
 # README
 
 This is a simple web app just to play around a little with Rails 5.2.
