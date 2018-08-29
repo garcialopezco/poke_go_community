@@ -8,6 +8,8 @@ This is a simple web app just to play around a little with Rails 5.2.
 
 It is intended to help Pokemon Go trainers organize Raids so they can see what Raids are active and how many trainers have confirmed their attendance.
 
+Here is an specific deploy(in Heroku) for my local [Pokemon Go Community](https://poke-go-community.herokuapp.com/)
+
 ### Current Features
 
 * Trainer signup
