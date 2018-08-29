@@ -32,36 +32,59 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "Gemfile.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
+            - gem-cache-{{ checksum "Gemfile.lock" }}
+            - gem-cache
+            - gem-cache
       - run:
-          name: install dependencies
+          name: Install Yarn
           command: |
-            bundle install --without development --jobs=4 --retry=3 --path vendor/bundle
-
+            curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+            echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee -a /etc/apt/sources.list
+            sudo apt-get --no-install-recommends install apt-transport-https
+            curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
+            sudo apt-get update
+            sudo apt-get --no-install-recommends install nodejs yarn
+            yarn --version
+      - run:
+          name: Install Latest Browsers
+          command: |
+            wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+            sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+            sudo apt-get update && sudo apt-get upgrade firefox
+            sudo apt-get install google-chrome-stable
+      - run:
+          name: Install Ruby Dependencies
+          command: gem install bundler && bundle install --jobs=4 --retry=3 --path vendor/bundle
       - save_cache:
           paths:
-            - ./venv
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-
-      # Database setup
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
-
+            - ./vendor/bundle
+          key: gem-cache-{{ checksum "Gemfile.lock" }}
+      - restore_cache:
+          keys:
+            - yarn-cache-{{ checksum "yarn.lock" }}
+            - yarn-cache
+            - yarn-cache
+      - run: yarn install
+      # Store yarn / webpacker cache
+      - save_cache:
+          key: yarn-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.yarn-cache
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Set up DB
+          command: |
+            bundle exec rake db:create db:schema:load --trace
+      - run: bin/webpack
       # run tests!
       - run:
           name: run tests
           command: |
             mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
-
-            bundle exec rspec --format documentation \
-                            --format RspecJunitFormatter \
-                            --out /tmp/test-results/rspec.xml \
-                            -- $(sed -e 's/\n/\\n/' -e 's/ /\ /' <<< "${TEST_FILES}")
-
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings --timings-type=classname)"
+            bundle exec rspec --format progress --format RspecJunitFormatter --out /tmp/test-results/rspec.xml --format progress $TEST_FILES
       # collect reports
       - store_test_results:
           path: /tmp/test-results
